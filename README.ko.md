@@ -1,6 +1,6 @@
 # Stipple Seasons · 点彩四季
 
-[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · **한국어**
+[English](README.md) · [简体中文](README.zh.md) · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · **한국어**
 
 Claude Code 데스크톱 앱용 테마 mod입니다. 대화 창 뒤에서 점묘화로 그린 호수 풍경이 계속 움직입니다. 사계절이 돌고, 맑음·흐림·눈이 오가며, 해와 달은 현지 시각에 맞춰 뜨고 집니다.
 

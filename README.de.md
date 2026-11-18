@@ -1,6 +1,6 @@
 # Stipple Seasons · 点彩四季
 
-[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · **Deutsch** · [Русский](README.ru.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
+[English](README.md) · [简体中文](README.zh.md) · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · **Deutsch** · [Русский](README.ru.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
 Ein Theme (Mod) für die Desktop-App von Claude Code: Hinter dem Chat liegt ein pointillistisch gemalter See, der sich ständig bewegt. Die Jahreszeiten wechseln, der Himmel ist klar, bewölkt oder es schneit, und Sonne und Mond gehen nach deiner Ortszeit auf und unter.
 

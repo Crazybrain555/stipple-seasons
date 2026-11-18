@@ -1,6 +1,6 @@
 # Stipple Seasons · 点彩四季
 
-[简体中文](README.md) · [English](README.en.md) · **Español** · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
+[English](README.md) · [简体中文](README.zh.md) · **Español** · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
 Un tema (mod) para la aplicación de escritorio de Claude Code: un lago puntillista que no deja de moverse detrás del chat. Pasan las estaciones, el cielo se despeja, se nubla o nieva, y el sol y la luna salen y se ponen según tu hora local.
 

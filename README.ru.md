@@ -1,6 +1,6 @@
 # Stipple Seasons · 点彩四季
 
-[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · **Русский** · [日本語](README.ja.md) · [한국어](README.ko.md)
+[English](README.md) · [简体中文](README.zh.md) · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · **Русский** · [日本語](README.ja.md) · [한국어](README.ko.md)
 
 Тема (мод) для настольного приложения Claude Code: за окном чата всё время движется озеро, написанное в технике пуантилизма. Сменяются времена года, небо бывает ясным, пасмурным или идёт снег, а солнце и луна восходят и заходят по вашему местному времени.
 
