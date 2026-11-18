@@ -125,7 +125,7 @@ const SHADE = '#0b1a33'
 /** The rim of light on the boat and the man. */
 const RIM = '#ffcf9a'
 /** Opacity of the sheets' warm light and cool shade where a face is turned fully to or from the light. */
-const FACE_LIT = 0.16
+const FACE_LIT = 0.19
 const FACE_SHADE = 0.15
 /** The light at a minute: how much comes from the east and from the west across the picture (0 to about 1), from
  * the sun and the moon together, and the sun's own [height, bearing]. */
@@ -560,38 +560,38 @@ type Slot = { day: Four; night?: Four; prop: 'stroke' | 'fill' | 'stop-color' }
 
 const SLOTS: Record<string, Slot> = {
   // sky dabs, top to horizon
-  q1: { prop: 'stop-color', day: ['#9dbde0', '#79aade', '#a2b0d2', '#b6c2d2'], night: ['#0f1a40', '#0d1a44', '#13193d', '#161e3e'] },
+  q1: { prop: 'stop-color', day: ['#94b6e0', '#6c9fdb', '#9caad6', '#aebcd4'], night: ['#0f1a40', '#0d1a44', '#13193d', '#161e3e'] },
   q2: { prop: 'stop-color', day: ['#bfd5ec', '#a9cdec', '#c4c8de', '#cdd5df'], night: ['#1a2a58', '#17295c', '#1e2652', '#212a50'] },
-  q3: { prop: 'stop-color', day: ['#ebe8e0', '#dcecf3', '#f0dcc0', '#eaedf0'], night: ['#2f4274', '#2b4178', '#353a68', '#37416a'] },
+  q3: { prop: 'stop-color', day: ['#f2ead8', '#e8ece2', '#f4d9b6', '#efe9e6'], night: ['#2f4274', '#2b4178', '#353a68', '#37416a'] },
   sf: { prop: 'fill', day: ['#fff3d0', '#fffae2', '#ffdca8', '#f8f4ea'], night: ['#f1ead0', '#f4eed6', '#f3e2bd', '#eef0f2'] },
   // sun by day, moon by night
   su: { prop: 'stroke', day: ['#fff0c4', '#fff7d6', '#ffd49a', '#f6f1e4'], night: ['#f1ead0', '#f4eed6', '#f3e2bd', '#eef0f2'] },
   // clouds: lit tops and shaded bellies
-  cl: { prop: 'stroke', day: ['#f7f7f4', '#ffffff', '#f6ece0', '#eef1f4'], night: ['#4a5684', '#4a5888', '#4e5480', '#55608a'] },
+  cl: { prop: 'stroke', day: ['#fbf6ea', '#fffbf0', '#fbeedd', '#f6f3ee'], night: ['#4a5684', '#4a5888', '#4e5480', '#55608a'] },
   cf: { prop: 'fill', day: ['#f3f4f2', '#fbfcfc', '#f3ebe2', '#e9edf1'], night: ['#3e4a78', '#3e4c7c', '#424874', '#48537e'] },
-  cs: { prop: 'stroke', day: ['#c7d1dc', '#c4d2e2', '#cdc6c8', '#bfc7d1'], night: ['#28325a', '#27345e', '#2b3058', '#2e3760'] },
+  cs: { prop: 'stroke', day: ['#bcc3dc', '#b8c4e0', '#c2bad0', '#b6bdd6'], night: ['#28325a', '#27345e', '#2b3058', '#2e3760'] },
   // far ridge
-  fr: { prop: 'fill', day: ['#93a8c4', '#839ec2', '#a0a3c0', '#a4afc2'] },
-  fd: { prop: 'stroke', day: ['#7a92b6', '#6a8bb4', '#8a8cb0', '#8a98b0'] },
+  fr: { prop: 'fill', day: ['#94a4c8', '#8399c6', '#a29fc4', '#a6abc8'] },
+  fd: { prop: 'stroke', day: ['#7a8cbc', '#6a85ba', '#8a86b4', '#8a92b8'] },
   f2: { prop: 'stroke', day: ['#a2b5cf', '#90abcc', '#b0aac6', '#b7c2d2'] },
-  f3: { prop: 'stroke', day: ['#c4d0e0', '#b2c4da', '#d2c4cc', '#f5f7f9'] },
+  f3: { prop: 'stroke', day: ['#d2d4dc', '#b8c6d8', '#dcc8c4', '#f5f7f9'] },
   // a farther ridge behind it, half lost in the haze of the sky
   fz: { prop: 'fill', day: ['#b7c4d8', '#a9bfd8', '#bcb7cc', '#c4cdd9'] },
   // ground under the woods
-  gr: { prop: 'fill', day: ['#3e6a42', '#2c5534', '#6e4a2e', '#dbe3ee'] },
+  gr: { prop: 'fill', day: ['#3a6248', '#284c3e', '#6a4436', '#d8dff0'] },
   // the shade at the foot of the near woods: dark green, a cool blue on the snow in winter
-  qf: { prop: 'stop-color', day: ['#14301c', '#14301c', '#14301c', '#46608c'] },
+  qf: { prop: 'stop-color', day: ['#152a2e', '#132a30', '#2a1c30', '#4a5a94'] },
   // broadleaf crowns: shadow, body, light (blossom in spring, gold in autumn). In winter the crowns are bare and
   // laden with snow: warm grey and blue-white, the dark twigs (t1) showing only here and there on the shaded side;
   // t4 is the rest of the shade, the same as t1 until winter, when it is snow in shadow.
-  t1: { prop: 'stroke', day: ['#4b7a47', '#2b5a36', '#8e3a22', '#4a3c35'] },
-  t4: { prop: 'stroke', day: ['#4b7a47', '#2b5a36', '#8e3a22', '#9da2b0'] },
-  t2: { prop: 'stroke', day: ['#86bb5e', '#4a8742', '#d6732a', '#c4bcb5'] },
-  t3: { prop: 'stroke', day: ['#f3b6c6', '#8fc25a', '#f2c24a', '#f4f7fb'] },
+  t1: { prop: 'stroke', day: ['#3f6e4c', '#24503a', '#8a3424', '#4a3c35'] },
+  t4: { prop: 'stroke', day: ['#4a6a72', '#2a4c5e', '#74405a', '#9a9cc8'] },
+  t2: { prop: 'stroke', day: ['#86bb5e', '#4a8742', '#d8702c', '#c8bdb4'] },
+  t3: { prop: 'stroke', day: ['#f3b6c6', '#b2cc62', '#f6c84e', '#fbf8f0'] },
   // conifers stay green, white-capped in winter
-  c1: { prop: 'stroke', day: ['#24463a', '#1f4136', '#28473b', '#173328'] },
+  c1: { prop: 'stroke', day: ['#21404a', '#1b3a44', '#2a3f48', '#1a3038'] },
   c2: { prop: 'stroke', day: ['#3b674c', '#305d46', '#3a5f48', '#284a3a'] },
-  c3: { prop: 'stroke', day: ['#6c9a60', '#588a52', '#6c8756', '#eef2f6'] },
+  c3: { prop: 'stroke', day: ['#7aa25e', '#6c9850', '#80904e', '#f8f6f0'] },
   // shore: grass and sand, snow in winter
   g1: { prop: 'stroke', day: ['#79a556', '#5b8b3e', '#a3893f', '#e8eef4'] },
   // reeds near the viewer: stalks, blades, and plumes (purple-brown young plumes in spring and summer, mauve-cream in
@@ -604,12 +604,12 @@ const SLOTS: Record<string, Slot> = {
   g2: { prop: 'stroke', day: ['#cdc28a', '#bfae70', '#caa060', '#cdd7e2'] },
   // water: base, deep dabs, mid dabs, glints
   wa: { prop: 'fill', day: ['#6e9cc2', '#4c8cc2', '#5f82a6', '#8aa2b8'], night: ['#0f1c44', '#0d1c48', '#111b40', '#152042'] },
-  w1: { prop: 'stroke', day: ['#4d7eae', '#2e6da8', '#3e648e', '#6d88a2'], night: ['#0a1534', '#081538', '#0c1532', '#101a36'] },
+  w1: { prop: 'stroke', day: ['#4b74ae', '#2d62a6', '#41608f', '#6a84a6'], night: ['#0a1534', '#081538', '#0c1532', '#101a36'] },
   w2: { prop: 'stroke', day: ['#8bb6d6', '#6aa8da', '#86a5c2', '#b2c4d4'], night: ['#22336a', '#1f346e', '#252f62', '#2a3766'] },
   w3: { prop: 'stroke', day: ['#e4eef2', '#dcedf6', '#f2d8ae', '#f2f5f8'], night: ['#c9c6ae', '#d2cfb6', '#cdbb98', '#d6dae2'] },
   // a few strokes of the opposite colour, as a pointillist puts them: muted violet in the deep water, pale warm in the lit
-  w4: { prop: 'stroke', day: ['#6b6c9e', '#5d64a2', '#6c6690', '#8a8daa'] },
-  w5: { prop: 'stroke', day: ['#d9d5c4', '#d6d6c4', '#e2d0b2', '#e0ddd6'] },
+  w4: { prop: 'stroke', day: ['#7468a8', '#6460aa', '#7a6498', '#8e88b4'] },
+  w5: { prop: 'stroke', day: ['#e8dcc0', '#e6dcbc', '#ecd2a8', '#ece2d8'] },
   // v37: the light side of the reeds' heads; lily pads by the reeds (young in spring, full in summer, floating gold
   // leaves in autumn, thin plates of ice in winter), the light on them, and summer's flowers (the light in other seasons)
   e4: { prop: 'stroke', day: ['#c09a86', '#aa827a', '#fff2d2', '#ffffff'] },
@@ -1309,10 +1309,28 @@ function conifer(d: Dabs, rand: () => number, cx: number, base: number, h: numbe
 
 /** Gap between trees in a row; rows are 0.6 of it apart, every other one set half a gap over. */
 const GAP = 34
-/** Groves: four trees drawn as one set of strokes (two in a row, two in the next set half a gap over) and set down with
- * one <use>, for the woods inside the hills; the trees along a skyline stand one by one. A frame costs about the
- * same per <use> however many strokes it holds, so groves keep the wider land as cheap as v23's. */
+/** Groves: four trees drawn as one set of strokes (two in a row, two in the next set half a gap over) and set down as
+ * one marker, for the woods inside the hills; the trees along a skyline stand one by one. */
 const GROVES = 7
+/** The markers the woods are painted with (see woods): each tree's shade and body, its lit strokes; the same for the
+ * groves. A path of class X puts marker X on each of its points. */
+const TREE_MARKS = [...'ABCDEFGHIJKLMNOPQRSTUVWXY', ...[0, 1, 2, 3, 4, 5, 6].map(g => `y${g}`)]
+const litMark = (id: string) => `${id}l`
+/** One band's trees: for each template, a path through its places (back ones first), with its shade and body; then a
+ * <use> copy of them all in a group that flashes with the gust, where they carry the lit strokes instead (a selector
+ * naming an ancestor outside a copy does not match inside it: see the stylesheet). */
+function treePaths(at: Map<string, [number, number][]>, id: string) {
+  const list = [...at].sort(([, a], [, b]) => a.reduce((s, p) => s + p[1], 0) / a.length - b.reduce((s, p) => s + p[1], 0) / b.length)
+  const d = (pts: [number, number][]) => {
+    let [px, py] = [0, 0]
+    return pts.map(([x, y]) => {
+      const m = `m${pair(x - px, y - py)}`
+      ;[px, py] = [x, y]
+      return m
+    }).join('')
+  }
+  return `<g id="${id}">${list.map(([k, pts]) => `<path class="${k}" d="${d(pts)}"/>`).join('')}</g><g class="vl"><use href="#${id}"/></g>`
+}
 /** Random draws v23's woods took from the scene's stream: still taken, so the reeds keep their shapes. */
 const OLD_WOOD_DRAWS = 7647
 
@@ -1324,14 +1342,20 @@ function woods(sceneRand: () => number) {
   const left = outline(slopeL, X0 - 8, L_END, 16)
   const right = outline(slopeR, R_START, X1 + 16, 16)
 
-  // The trees are a few drawn crowns and cones, each set down where it stands with <use>: the renderer repeats them,
+  // The trees are a few drawn crowns and cones, each set down where it stands as a marker: the renderer repeats them,
   // so the picture stays small however many trees there are. Several of each size, so neighbours seldom match.
-  // A tree's lit strokes sit in their own group (.vl) so a gust can flash them, as leaves turn their pale side to
-  // the wind; the band a tree stands in hands the gust's timing down to it (--d).
+  // A tree's lit strokes are a marker of their own, drawn in a group per band (.vl) so a gust can flash them, as
+  // leaves turn their pale side to the wind; the band hands the gust's timing down to that group (--d).
   const lit = (slot: string) => slot === 't3' || slot === 'c3'
   type Shape = { id: string; r: number; kind: 'b' | 'c'; slots: [string, [number, number, number, number][]][]; dabs: [number, number, number, number][] }
   const shapes: Record<'b' | 'c', Shape[][]> = { b: [], c: [] }
   let defs = ''
+  // Each tree (and grove) is painted twice as a marker: its shade and body (id), and its lit strokes (lit). A tree is
+  // set down as a point of a path that is never stroked, each template's places in a band one path, which the player
+  // draws for much less than a <use> each (v44: about 0.4 ms a frame). Marker content inherits only from where the
+  // marker is defined, so nothing inside may move: the leaves' flash is a group opacity round the lit paths of each
+  // band instead (drawn after its shade and body, which in the sparse dabs looks the same).
+  const marks = (id: string, litId: string, d: Dabs) => `<marker id="${id}">${d.svg(0, '', s => !lit(s))}</marker><marker id="${litId}">${d.svg(0, '', lit)}</marker>`
   const brush = rng(7741)
   for (const [kind, sizes, variants] of [['b', [10, 11.5, 13, 14.5], 4], ['c', [10, 12, 14], 3]] as const) {
     for (const r of sizes) {
@@ -1341,9 +1365,9 @@ function woods(sceneRand: () => number) {
         if (kind === 'c') conifer(d, brush, 0, 0, r * 3)
         else crown(d, brush, 0, 0, r)
         // (the trees' templates are named by single capital letters, A to Y: their names are written at every tree)
-        const id = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[defs.split('<g id=').length - 1]!
+        const id = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'[shapes.b.flat().length + shapes.c.flat().length + row.length]!
         row.push({ id, r, kind, slots: [...d.bySlot.entries()], dabs: [...d.bySlot.values()].flat() })
-        defs += `<g id="${id}">${d.svg(0, '', s => !lit(s))}<g class="vl">${d.svg(0, '', lit)}</g></g>`
+        defs += marks(id, litMark(id), d)
       }
       shapes[kind].push(row)
     }
@@ -1380,16 +1404,16 @@ function woods(sceneRand: () => number) {
         }
       }
     }
-    defs += `<g id="k${g}">${d.svg(0, '', s => !lit(s))}<g class="vl">${d.svg(0, '', lit)}</g></g>`
+    defs += marks(`y${g}`, litMark(`y${g}`), d)
   }
 
   // staggered rows of trees; the top row stands on the ridge, so crowns break the skyline. Taken four places at a
   // time: where all four lie deep in the woods a grove stands there, elsewhere each place gets its own tree.
-  type Stand = { x: number; y: number; use: string; trees: Tree[] }
+  type Stand = { x: number; y: number; id: string; trees: Tree[] }
   const stands0: Stand[] = []
-  const single = (t: Tree) => stands0.push({ x: t.x, y: t.y, use: `<use href="#${t.shape.id}" x="${t.x}" y="${t.y}"/>`, trees: [t] })
+  const single = (t: Tree) => stands0.push({ x: t.x, y: t.y, id: t.shape.id, trees: [t] })
   const group = (id: string, members: Tree[], x: number, y: number) =>
-    stands0.push({ x, y, use: `<use href="#${id}" x="${x}" y="${y}"/>`, trees: members.map(t => ({ ...t, x: t.x + x, y: t.y + y })) })
+    stands0.push({ x, y, id, trees: members.map(t => ({ ...t, x: t.x + x, y: t.y + y })) })
   const plant = (x0: number, x1: number, top: (x: number) => number) => {
     const dy = GAP * 0.6
     // rows counted up from the water, each pair of rows taken together
@@ -1400,7 +1424,7 @@ function woods(sceneRand: () => number) {
         const inside = ([x, y]: readonly [number, number]) => y - 6 > top(x) + 2 && y + 6 <= SHORE + 4 && x <= x1
         if (places.every(inside)) {
           const g = Math.floor(rand() * GROVES)
-          group(`k${g}`, groves[g]!, R(x0 + j * GAP + (rand() - 0.5) * 6), R(rowY(i + 0.5) + (rand() - 0.5) * 4))
+          group(`y${g}`, groves[g]!, R(x0 + j * GAP + (rand() - 0.5) * 6), R(rowY(i + 0.5) + (rand() - 0.5) * 4))
           continue
         }
         for (const [x, y] of places) {
@@ -1428,7 +1452,7 @@ function woods(sceneRand: () => number) {
   // right, and neighbouring trees never move as one.
   // The skyline the hills and treetops make is read off the strokes as they are set down: the dawn and dusk glow and
   // the moon are kept above it, so the moon sets behind the trees and the glow does not lie over the land.
-  const stands = Array.from({ length: GUST_BANDS * 2 }, () => '')
+  const stands = Array.from({ length: GUST_BANDS * 2 }, () => new Map<string, [number, number][]>())
   // the woods as the lake shows them: each tree a couple of flat dabs of its colours
   const soft = new Dabs().order('t1', 'c1', 't2', 'c2', 't3')
   const tops = new Map<number, number>()
@@ -1438,7 +1462,9 @@ function woods(sceneRand: () => number) {
   }
   for (const [i, s] of stands0.entries()) {
     const band = Math.min(GUST_BANDS - 1, Math.max(0, Math.floor(((s.x - X0) / (X1 - X0)) * GUST_BANDS)))
-    stands[band * 2 + (i % 2)] += s.use
+    // (each template's trees in a band rustle as one, half the templates one way, half the other: one path each)
+    const places = stands[band * 2 + ((s.id.charCodeAt(0) + +(s.id[1] ?? 0) + band) % 2)]!
+    places.set(s.id, [...(places.get(s.id) ?? []), [s.x, s.y]])
     // a grove shows in the lake as a long dab for each of its rows
     if (s.trees.length > 1) {
       for (const v of [-0.3, 0.3]) {
@@ -1487,7 +1513,7 @@ function woods(sceneRand: () => number) {
   const hills = [[slopeL, X0 - 8, L_END, 'ga'], [slopeR, R_START, X1 + 16, 'gb']] as const
   const sheets = (['le', 'lw'] as const).map((side, i) => hills.map(([f, x0, x1, id], j) => `<use href="#${id}" class="${side}" fill="url(#l${2 * i + j})"/>`).join('')).join('')
   defs += (['le', 'lw'] as const).map(side => hills.map(([f, x0, x1], j) => faceSheet(`l${(side === 'le' ? 0 : 2) + j}`, f, x0, x1, side === 'le')).join('')).join('')
-  return `<defs>${defs}</defs><g class="gr"><path id="ga" fill="inherit" d="${left}"/><path id="gb" fill="inherit" d="${right}"/></g>${stands.map((u, i) => `<g class="u${i >> 1}"><g class="j${i & 1}">${u}</g></g>`).join('')}${feet}<g class="li">${sheets}</g>${shore.svg(3)}`
+  return `<defs>${defs}</defs><g class="gr"><path id="ga" fill="inherit" d="${left}"/><path id="gb" fill="inherit" d="${right}"/></g>${stands.map((u, i) => `<g class="u${i >> 1}"><g class="j${i & 1}">${treePaths(u, `T${i}`)}</g></g>`).join('')}${feet}<g class="ld" fill="#2c2856"><use href="#m0"/><use href="#m1"/><use href="#ga"/><use href="#gb"/></g><g class="li">${sheets}</g>${shore.svg(3)}`
 }
 
 // The lake's ripples, finer toward the horizon: rows close-set and strokes small and thin in the far water, growing
@@ -1537,7 +1563,7 @@ function water(rand: () => number) {
       const len = Math.min(size(), x0 + tile - 2 * Z - x)
       const p = wave()
       const q = tint()
-      const slot = depth > 0.4 && q < 0.045 ? 'w4' : depth < 0.3 && q < 0.06 ? 'w5' : p < 0.55 ? 'w2' : 'w1'
+      const slot = depth > 0.4 && q < 0.065 ? 'w4' : depth < 0.3 && q < 0.1 ? 'w5' : p < 0.55 ? 'w2' : 'w1'
       if ((x === x0 || wave() < 0.66) && len > 2) set.add(slot, x, y + jitter(), len, tilt())
       x += len + space()
     }
@@ -2034,7 +2060,7 @@ function build() {
   // dusk and night over all of it, deeper toward the top of the sky; above the veil, kept to the sky by the skyline,
   // the low glow of dawn and dusk and the moon, which sets behind the trees; the stars; the moon's path on the water
   // and the boat's lantern, which shine through the night; a dimmer for a dark window.
-  return `<defs><clipPath id="wc"><rect x="${X0}" y="${SHORE}" width="${X1 - X0}" height="${Y1 - SHORE}"/></clipPath><linearGradient id="sg" x2="0" y2="1"><stop class="q1"/><stop class="q2" offset=".55"/><stop class="q3" offset="1"/></linearGradient><radialGradient id="gl"><stop stop-color="#ffd37a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd37a" stop-opacity="0"/></radialGradient>${glow('ge', ARC_X[0])}<clipPath id="sk"><path clip-rule="evenodd" d="M${X0 - 10} ${Y0 - 10}H${X1 + 30}V${Y1 + 10}H${X0 - 10}z${skyline}"/></clipPath><linearGradient id="nt" x2="0" y2="1"><stop stop-color="${NIGHT}" stop-opacity=".6"/><stop offset="1" stop-color="${NIGHT}" stop-opacity="0"/></linearGradient><linearGradient id="wg" x2="0" y2="1"><stop class="q3" stop-opacity=".5"/><stop class="q3" offset=".3" stop-opacity="0"/><stop offset=".55" stop-color="#0c2550" stop-opacity="0"/><stop offset="1" stop-color="#0c2550" stop-opacity=".22"/></linearGradient><radialGradient id="yg" gradientUnits="userSpaceOnUse" cx="${ARC_X[0]}" cy="${SHORE}" r="${R(1000 * ZK)}" gradientTransform="matrix(1 0 0 .3 0 ${R(SHORE * 0.7)})"><stop stop-color="#ffb46a" stop-opacity=".7"/><stop offset=".3" stop-color="#f49a7e" stop-opacity=".38"/><stop offset=".7" stop-color="#b08ab8" stop-opacity=".1"/><stop offset="1" stop-color="#b08ab8" stop-opacity="0"/></radialGradient><radialGradient id="hz" gradientUnits="userSpaceOnUse" cx="930" cy="${SHORE - 6}" r="760" gradientTransform="matrix(1 0 0 .07 0 ${R((SHORE - 6) * 0.93)})"><stop class="q3" stop-opacity=".75"/><stop class="q3" offset=".6" stop-opacity=".3"/><stop class="q3" offset="1" stop-opacity="0"/></radialGradient><linearGradient id="ft" gradientUnits="userSpaceOnUse" y1="${SHORE - 80}" x2="0" y2="${SHORE + 4}"><stop class="qf" stop-opacity="0"/><stop class="qf" offset="1" stop-opacity=".2"/></linearGradient><radialGradient id="mg"><stop stop-color="#eef1f6" stop-opacity=".75"/><stop offset=".55" stop-color="#eef1f6" stop-opacity=".35"/><stop offset="1" stop-color="#eef1f6" stop-opacity="0"/></radialGradient>${catsPaw[0]}<radialGradient id="hg"><stop offset=".3" stop-color="${SHADE}"/><stop offset="1" stop-color="${SHADE}" stop-opacity="0"/></radialGradient><radialGradient id="mh"><stop stop-color="#eef2fa" stop-opacity=".5"/><stop offset=".45" stop-color="#eef2fa" stop-opacity=".14"/><stop offset="1" stop-color="#eef2fa" stop-opacity="0"/></radialGradient></defs>
+  return `<defs><clipPath id="wc"><rect x="${X0}" y="${SHORE}" width="${X1 - X0}" height="${Y1 - SHORE}"/></clipPath><linearGradient id="sg" x2="0" y2="1"><stop class="q1"/><stop class="q2" offset=".55"/><stop class="q3" offset="1"/></linearGradient><radialGradient id="gl"><stop stop-color="#ffd37a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd37a" stop-opacity="0"/></radialGradient>${glow('ge', ARC_X[0])}<clipPath id="sk"><path clip-rule="evenodd" d="M${X0 - 10} ${Y0 - 10}H${X1 + 30}V${Y1 + 10}H${X0 - 10}z${skyline}"/></clipPath><linearGradient id="nt" x2="0" y2="1"><stop stop-color="${NIGHT}" stop-opacity=".6"/><stop offset="1" stop-color="${NIGHT}" stop-opacity="0"/></linearGradient><linearGradient id="wg" x2="0" y2="1"><stop class="q3" stop-opacity=".5"/><stop class="q3" offset=".3" stop-opacity="0"/><stop offset=".5" stop-color="#1c2462" stop-opacity="0"/><stop offset="1" stop-color="#1c2462" stop-opacity=".28"/></linearGradient><radialGradient id="yg" gradientUnits="userSpaceOnUse" cx="${ARC_X[0]}" cy="${SHORE}" r="${R(1000 * ZK)}" gradientTransform="matrix(1 0 0 .3 0 ${R(SHORE * 0.7)})"><stop stop-color="#ffb46a" stop-opacity=".7"/><stop offset=".3" stop-color="#f49a7e" stop-opacity=".38"/><stop offset=".7" stop-color="#b08ab8" stop-opacity=".1"/><stop offset="1" stop-color="#b08ab8" stop-opacity="0"/></radialGradient><radialGradient id="hz" gradientUnits="userSpaceOnUse" cx="930" cy="${SHORE - 6}" r="760" gradientTransform="matrix(1 0 0 .07 0 ${R((SHORE - 6) * 0.93)})"><stop class="q3" stop-opacity=".75"/><stop class="q3" offset=".6" stop-opacity=".3"/><stop class="q3" offset="1" stop-opacity="0"/></radialGradient><linearGradient id="ft" gradientUnits="userSpaceOnUse" y1="${SHORE - 80}" x2="0" y2="${SHORE + 4}"><stop class="qf" stop-opacity="0"/><stop class="qf" offset="1" stop-opacity=".2"/></linearGradient><radialGradient id="mg"><stop stop-color="#eef1f6" stop-opacity=".75"/><stop offset=".55" stop-color="#eef1f6" stop-opacity=".35"/><stop offset="1" stop-color="#eef1f6" stop-opacity="0"/></radialGradient>${catsPaw[0]}<radialGradient id="hg"><stop offset=".3" stop-color="${SHADE}"/><stop offset="1" stop-color="${SHADE}" stop-opacity="0"/></radialGradient><radialGradient id="mh"><stop stop-color="#eef2fa" stop-opacity=".5"/><stop offset=".45" stop-color="#eef2fa" stop-opacity=".14"/><stop offset="1" stop-color="#eef2fa" stop-opacity="0"/></radialGradient></defs>
 <rect fill="url(#sg)" ${sky}/>${sunDabs}${cloudDabs}${birds()}
 <g>${far}${mids}${wood}</g>
 <rect class="wa" ${lake0}/><rect fill="url(#wg)" ${lake0}/>
@@ -2167,6 +2193,8 @@ function dayCss(now: number, tz: number) {
     ['gk', 7.2, m => `opacity:${num(ramp(sunEl(m), [[1, 0.9], [5, 0.7], [11, 0]]))}`],
     ['cp', 7.2, m => `opacity:${num(ramp(sunEl(m), [[-9, 0], [-4, 0.7], [2, 0.85], [7, 0.5], [13, 0]]))}`],
     ['ms', 7.2, m => `opacity:${num(day.sun(m)[1] < 180 ? ramp(sunEl(m), [[-7, 0], [-4, 0.9], [2, 0.85], [8, 0]]) : 0)}`],
+    // the land goes cool and dark against the glowing sky when the sun is low (under the lake it is hidden)
+    ['ld', 7.2, m => `opacity:${num(ramp(sunEl(m), [[-6, 0], [-2, 0.3], [3, 0.26], [9, 0]]))}`],
     ['bd', 7.2, m => `opacity:${num(ramp(sunEl(m), [[-4, 0], [0, 1]]))}`],
     ['lq', 7.2, m => `opacity:${num(ramp(sunEl(m), [[-4, 1], [2, 0]]))}`],
     // the light engine: the sheets on the hills and the rims on the boat, the boat's and the hills' shade, the clouds' bellies
@@ -2265,11 +2293,11 @@ ${variant === 'test' ? '' : `.gy{animation:gy var(--b) ease-in-out var(--o,0s) i
 .bj{--b:${short(FLOCK_BEAT)}s;animation:jostle var(--t) ease-in-out var(--j) infinite alternate}@keyframes jostle{from{translate:-3px 1.6px}to{translate:3px -2.4px}}
 @keyframes gn{0%,30%,62%,100%{rotate:0deg}42%,50%{rotate:-5deg}}.kf{fill:#5d6b7a;transform:matrix(-.6,.16,0,.75,5,-2)}
 .oy{--b:${short(BEAT_S)}s;animation:oy var(--t) ease-in-out var(--j) infinite alternate,gn 23s ease-in-out var(--d) infinite}@keyframes oy{from{translate:0 -11px}to{translate:0 11px}}
-marker{overflow:visible}.e2{stroke-width:${num(2.2 * PS)}}.e4{stroke-width:${num(1.6 * PS)}}${PLUMES.map((_, q) => `.k${q}{marker:url(#rp${q})}`).join('')}${REEDS.map((_, i) => `.x${i}`).join(',')}{animation:reed ${GUST}s ease-in-out var(--j) infinite}${REEDS.map(([x, y], i) => `.x${i}{transform-origin:${x}px ${y}px;--j:${short(gustDelay(x))}s}`).join('')}
+marker{overflow:visible}${TREE_MARKS.map(k => `.${k}{marker:url(#${litMark(k)})}`).join('')}${TREE_MARKS.map(k => `g>g>.${k}{marker:url(#${k})}`).join('')}.e2{stroke-width:${num(2.2 * PS)}}.e4{stroke-width:${num(1.6 * PS)}}${PLUMES.map((_, q) => `.k${q}{marker:url(#rp${q})}`).join('')}${REEDS.map((_, i) => `.x${i}`).join(',')}{animation:reed ${GUST}s ease-in-out var(--j) infinite}${REEDS.map(([x, y], i) => `.x${i}{transform-origin:${x}px ${y}px;--j:${short(gustDelay(x))}s}`).join('')}
 ${gustFrames('reed', s => `transform:skewX(${num(0.5 + 1.9 * s)}deg)`)}
 
 .sk{animation:flake 400s linear infinite}@keyframes flake{to{transform:translateY(${Y1 - Y0}px)}}
-.lg stop{stop-color:#10203f}.lg .la{stop-color:#ffe0a8}.hs{transform-origin:0 ${SHORE}px}.cu{stroke:#f2a08e}.gk{stroke:#ff9a4c}.cp{stroke:#ffb894;fill:#f6b9a4}
+.lg stop{stop-color:#1e1c4c}.lg .la{stop-color:#ffe0a8}.hs{transform-origin:0 ${SHORE}px}.cu{stroke:#f2a08e}.gk{stroke:#ff9a4c}.cp{stroke:#ffb894;fill:#f6b9a4}
 ${variant === 'test' ? '.tm{animation:tm 12s linear infinite}@keyframes tm{to{transform:translateX(1600px)}}' : ''}
 .bt{translate:${SPOTS[0][0]}px ${LANES[0]}px;animation:voyage ${VOYAGE}s linear ${lap(VOYAGE)}s infinite}
 ${voyage()}

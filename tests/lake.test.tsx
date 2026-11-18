@@ -1,6 +1,6 @@
 import { expect, test } from 'claude-code/testing'
 
-const SCENE = 'lake43-auto-60-full'
+const SCENE = 'lake44-auto-60-full'
 
 function engine(on: any, sets: unknown[]) {
   on('command.register', (_: unknown, e: { name: string }) => ({ value: { command: e.name } }))
@@ -39,7 +39,7 @@ test('/lake pins a season, /lake off clears, /lake on sets it again', async ($, 
 
   const autumn = await $.command.run({ command: 'lake', args: '秋' })
   expect(String(autumn.text)).toContain('定格在秋')
-  expect(sets.at(-1).backdrop.scene).toBe('lake43-autumn-60-full')
+  expect(sets.at(-1).backdrop.scene).toBe('lake44-autumn-60-full')
 
   const off = await $.command.run({ command: 'lake', args: 'off' })
   expect(String(off.text)).toContain('已关闭')
@@ -76,7 +76,7 @@ test('/lake test and /lake lite draw lighter scenes', async ($, on) => {
   for (const v of ['test', 'lite'] as const) {
     await $.command.run({ command: 'lake', args: v })
     const scene = sets.at(-1).backdrop.scene
-    expect(scene).toBe(`lake43-auto-60-${v}`)
+    expect(scene).toBe(`lake44-auto-60-${v}`)
     const ui = await $.ui.mount({ plugin: 'stipple-seasons', surface: 'desktop', component: 'Backdrop', props: { scene, plugin: 'stipple-seasons', glass: { blur: 14, opacity: 0.55 } } } as any)
     const source = String((await ui.find({ type: 'Svg' }))?.props.source ?? '')
     expect(source.length < (v === 'test' ? 30000 : 125000)).toBe(true)
@@ -113,7 +113,7 @@ test('/lake 晴|阴|雪 holds the weather, /lake auto lets it turn again', async
   const snow = await $.command.run({ command: 'lake', args: '雪' })
   expect(String(snow.text)).toContain('一直下雪')
   const scene = sets.at(-1).backdrop.scene
-  expect(scene).toBe('lake43-auto-60-full-snow')
+  expect(scene).toBe('lake44-auto-60-full-snow')
   const ui = await $.ui.mount({ plugin: 'stipple-seasons', surface: 'desktop', component: 'Backdrop', props: { scene, plugin: 'stipple-seasons', glass: { blur: 14, opacity: 0.55 } } } as any)
   const source = String((await ui.find({ type: 'Svg' }))?.props.source ?? '')
   expect(source.includes('.sn{opacity:1}')).toBe(true)
@@ -121,10 +121,10 @@ test('/lake 晴|阴|雪 holds the weather, /lake auto lets it turn again', async
   await ui.unmount()
 
   await $.command.run({ command: 'lake', args: '阴' })
-  expect(sets.at(-1).backdrop.scene).toBe('lake43-auto-60-full-cloudy')
+  expect(sets.at(-1).backdrop.scene).toBe('lake44-auto-60-full-cloudy')
 
   await $.command.run({ command: 'lake', args: 'auto' })
-  expect(sets.at(-1).backdrop.scene).toBe('lake43-auto-60-full')
+  expect(sets.at(-1).backdrop.scene).toBe('lake44-auto-60-full')
 })
 
 test('the sun and moon keep the local clock, and /lake says when they rise and set', async ($, on) => {
