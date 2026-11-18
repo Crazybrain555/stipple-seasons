@@ -1,6 +1,6 @@
 # 点彩四季 · Stipple Seasons
 
-**简体中文** · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · [Français](README.fr.md)
+**简体中文** · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
 Claude Code 桌面应用的主题 mod：聊天窗口背后是一幅一直在动的点彩湖景。四季轮转，阴晴雪来去，日月按你的本地时间升落。
 
@@ -40,8 +40,8 @@ Claude Code 桌面应用的主题 mod：聊天窗口背后是一幅一直在动�
 |---|---|
 | `/lake` | 显示当前状态、今天的日出日落和月相 |
 | `/lake auto` | 四季和天气都自动轮转 |
-| `/lake 春` `夏` `秋` `冬` | 定格在一个季节（也可写 `spring` `summer` `autumn` `winter`） |
-| `/lake 晴` `阴` `雪` | 定住天气（也可写 `clear` `cloudy` `snow`）；`/lake 天气` 恢复随季节 |
+| `/lake spring` `summer` `autumn` `winter` | 定格在一个季节（也可写 `春` `夏` `秋` `冬`） |
+| `/lake clear` `cloudy` `snow` | 定住天气（也可写 `晴` `阴` `雪`）；`/lake weather` 恢复随季节（也可写 `天气`） |
 | `/lake year <分钟>` | 一年有多长，4–1440 分钟，默认 60 |
 | `/lake full` `lite` `test` | 完整版、精简版、诊断画面 |
 | `/lake off` `on` | 关闭、打开 |

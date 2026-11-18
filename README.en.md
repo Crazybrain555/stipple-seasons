@@ -1,6 +1,6 @@
 # Stipple Seasons · 点彩四季
 
-[简体中文](README.md) · **English** · [Español](README.es.md) · [日本語](README.ja.md) · [Français](README.fr.md)
+[简体中文](README.md) · **English** · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
 A theme mod for the Claude Code desktop app: a stipple (pointillist) lake that keeps moving behind the chat. The seasons turn, clear skies, cloud and snow come and go, and the sun and moon rise and set by your local clock.
 

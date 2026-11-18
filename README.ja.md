@@ -1,6 +1,6 @@
 # Stipple Seasons · 点彩四季
 
-[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · **日本語** · [Français](README.fr.md)
+[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Русский](README.ru.md) · **日本語** · [한국어](README.ko.md)
 
 Claude Code デスクトップアプリ用のテーマ mod です。チャットの背後で、点描の湖の風景が動き続けます。四季がめぐり、晴れ・曇り・雪が移り変わり、太陽と月は現地時刻に合わせて昇り沈みします。
 

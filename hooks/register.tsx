@@ -123,7 +123,7 @@ function describe(s: Settings): string {
   const state = (s.off ? '已关闭' : `${season}，${s.sky === 'auto' && s.mode !== 'auto' ? '晴天' : SKY_NAMES[s.sky]}`) + kind
   return (
     `点彩四季：${state}。\n${today()}\n` +
-    `/lake auto 四季和阴晴都轮转 · /lake 春|夏|秋|冬 定格一个季节 · /lake 晴|阴|雪 定住天气 · /lake 天气 天气随季节 · /lake year <分钟> 一年多长（默认 ${DEFAULT_MINUTES}）· /lake off 关闭 · /lake on 打开 · /lake test 诊断画面 · /lake lite 精简版 · /lake full 完整版`
+    `/lake auto 四季和阴晴都轮转 · /lake spring|summer|autumn|winter 定格一个季节 · /lake clear|cloudy|snow 定住天气 · /lake weather 天气随季节 · /lake year <分钟> 一年多长（默认 ${DEFAULT_MINUTES}）· /lake off 关闭 · /lake on 打开 · /lake test 诊断画面 · /lake lite 精简版 · /lake full 完整版\n（中文也可以：春 夏 秋 冬 · 晴 阴 雪 · 天气）`
   )
 }
 
@@ -132,7 +132,7 @@ export const register: Register = on => {
     try {
       await $.command.register({
         name: COMMAND,
-        description: '点彩四季湖景：auto 四季轮转，春/夏/秋/冬 定格季节，晴/阴/雪 定住天气，year <分钟> 调一年长度，off/on 关开',
+        description: '点彩四季湖景：auto 四季轮转，spring/summer/autumn/winter 定格季节，clear/cloudy/snow 定住天气，year <分钟> 调一年长度，off/on 关开',
       })
     } catch (error) {
       void $.ui.toast(`${PLUGIN}: /${COMMAND} 不可用 (${String(error)})`)

@@ -1,6 +1,6 @@
 # Stipple Seasons · 点彩四季
 
-[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [日本語](README.ja.md) · **Français**
+[简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · **Français** · [Deutsch](README.de.md) · [Русский](README.ru.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
 Un thème (mod) pour l’application de bureau Claude Code : un lac pointilliste qui ne cesse de bouger derrière la conversation. Les saisons passent, le ciel se dégage, se couvre ou il neige, et le soleil et la lune se lèvent et se couchent à votre heure locale.
 
