@@ -9,7 +9,7 @@ const PLUGIN = 'stipple-seasons'
 const COMMAND = 'lake'
 const DEFAULT_MINUTES = 60
 // Part of the scene's name: a new value makes the app draw the scene again instead of keeping the one it has.
-const SCENE_VERSION = 42
+const SCENE_VERSION = 43
 
 // The app's own colours, tinted to the lake: misty blue paper by day, moonlit navy by night.
 const { theme, problems } = makeColors({

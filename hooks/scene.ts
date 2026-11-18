@@ -594,10 +594,13 @@ const SLOTS: Record<string, Slot> = {
   c3: { prop: 'stroke', day: ['#6c9a60', '#588a52', '#6c8756', '#eef2f6'] },
   // shore: grass and sand, snow in winter
   g1: { prop: 'stroke', day: ['#79a556', '#5b8b3e', '#a3893f', '#e8eef4'] },
-  // reeds near the viewer: stalks, blades, and heads (brown cattails, pale plumes in autumn and winter)
-  e1: { prop: 'stroke', day: ['#7da25a', '#5d8a42', '#c2a564', '#cfc6ad'] },
-  e3: { prop: 'stroke', day: ['#5f8f44', '#3f7536', '#a88a4c', '#b9b19a'] },
-  e2: { prop: 'stroke', day: ['#7a5636', '#5f4129', '#e3d6b4', '#efe9dc'] },
+  // reeds near the viewer: stalks, blades, and plumes (purple-brown young plumes in spring and summer, mauve-cream in
+  // autumn, silver in winter); the reeds stand through the winter, dry and straw-coloured
+  e1: { prop: 'stroke', day: ['#7da25a', '#5d8a42', '#c2a564', '#b39566'] },
+  e3: { prop: 'stroke', day: ['#5f8f44', '#3f7536', '#a88a4c', '#9a8460'] },
+  // the thin, lit stalks and the narrow leaves: lighter and warmer, a broken colour among the others
+  ew: { prop: 'stroke', day: ['#a3bf6a', '#86ad55', '#dcc27e', '#d0b98a'] },
+  e2: { prop: 'stroke', day: ['#7a5250', '#6c4748', '#ddd0c0', '#d2cdc4'] },
   g2: { prop: 'stroke', day: ['#cdc28a', '#bfae70', '#caa060', '#cdd7e2'] },
   // water: base, deep dabs, mid dabs, glints
   wa: { prop: 'fill', day: ['#6e9cc2', '#4c8cc2', '#5f82a6', '#8aa2b8'], night: ['#0f1c44', '#0d1c48', '#111b40', '#152042'] },
@@ -609,7 +612,7 @@ const SLOTS: Record<string, Slot> = {
   w5: { prop: 'stroke', day: ['#d9d5c4', '#d6d6c4', '#e2d0b2', '#e0ddd6'] },
   // v37: the light side of the reeds' heads; lily pads by the reeds (young in spring, full in summer, floating gold
   // leaves in autumn, thin plates of ice in winter), the light on them, and summer's flowers (the light in other seasons)
-  e4: { prop: 'stroke', day: ['#a4774c', '#8a6038', '#f6eedb', '#ffffff'] },
+  e4: { prop: 'stroke', day: ['#c09a86', '#aa827a', '#fff2d2', '#ffffff'] },
   lp: { prop: 'fill', day: ['#6b9a49', '#3f7a38', '#b0843c', '#c6d2dd'] },
   lh: { prop: 'stroke', day: ['#a8d07c', '#80b65c', '#dcb062', '#f2f6fa'] },
   lf: { prop: 'stroke', day: ['#a8d07c', '#f6b3c8', '#dcb062', '#f2f6fa'] },
@@ -1780,6 +1783,77 @@ function flight(name: string, seed: number, passes: number, [low, high]: readonl
   const stops = legs.map((l, i) => `${pct(l.t)}%{translate:${l.from}}${pct(l.t + l.dur)}%{translate:${l.to}${side(l.to) === side(legs[(i + 1) % legs.length]!.from) ? '' : ';animation-timing-function:step-end'}}`)
   return { css: `@keyframes ${name}{${stops.join('')}100%{translate:${legs[0]!.from}}}`, seconds: R(t) }
 }
+// Reed plumes (Phragmites), painted once each as a marker and set on the stalks' tops by a path that is never stroked,
+// so a plume costs a few characters where it stands. Each is a feathery tassel of small flat dabs laid along it, nodding
+// to leeward (left), widest in its lower middle and tapering to a fine tip, the under side fuller and hanging; the body
+// in e2, the light on its upper (sun) side in e4. Six kinds, from young ones standing narrow and nearly upright to old
+// ones nodding and trailing in the wind (a clump takes one of each age: see reeds).
+// (A marker costs the player a little each time it is drawn, so each plume is two strokes, of flat-ended dabs.) Written at PS times the size they
+// show at, in whole units.
+const PS = 2
+// [length, nod at the tip (radians), half width, how loose its end hangs, rows of dabs]
+const PLUME_KINDS = [
+  [62, 0.25, 10, 0, 6],
+  [68, 0.45, 13, 0.1, 6],
+  [72, 0.7, 16, 0.3, 7],
+  [76, 0.9, 17, 0.5, 7],
+  [78, 1.1, 15, 0.8, 6],
+  [82, 1.3, 13, 1, 6],
+] as const
+const PLUMES = PLUME_KINDS.map(([L, nod, W, loose, n], q) => {
+  const r = rng(7700 + q * 31)
+  /** A point on the plume: u along it (0 at the stalk's top, 1 at the tip), f across it (-1 the upper side, 1 the
+   * under side, at its full width there). */
+  const at = (u: number, f: number) => {
+    let [x, y, a] = [0, 8, 0.04]
+    const k = 24
+    for (let j = 1; j <= Math.round(k * u); j++) {
+      a = 0.04 - nod * ((j - 0.5) / k) ** 1.3
+      x += (Math.sin(a) * L) / k
+      y -= (Math.cos(a) * L) / k
+    }
+    // widest a third of the way up, the under side fuller; a loose plume's end trails wider below
+    const o = f * W * 2.2 * u ** 0.6 * (1 - u) ** (0.9 - 0.5 * loose) * (f > 0 ? 1 : 0.6)
+    return [x - o * Math.cos(a), y - o * Math.sin(a)] as const
+  }
+  const d = new Dabs().order('e2', 'e4').ends(PS)
+  const dab = (slot: string, u: number, len: number, f1: number, f2: number) => {
+    const [x, y] = at(Math.max(0, u - len / 2), f1)
+    const [x2, y2] = at(Math.min(1, u + len / 2), f2)
+    d.add(slot, (x * PS) / 2, (y * PS) / 2, ((x2 - x) * PS) / 2, ((y2 - y) * PS) / 2)
+  }
+  // the body: short dabs laid along the plume in rows, as many across as its width takes, the under ones hanging out
+  // a little, and more so toward a loose plume's end; one on the stalk's top joins them to it
+  dab('e2', 0.04, 0.12, 0, 0)
+  for (let j = 0; j < n; j++) {
+    const u = 0.1 + (0.86 * (j + 0.3 + r() * 0.4)) / n
+    const across = Math.max(1, Math.round((W * 2.2 * u ** 0.6 * (1 - u) ** 0.9) / 5))
+    for (let c = 0; c < across; c++) {
+      const f = across === 1 ? r() * 0.4 - 0.2 : -0.85 + (1.75 * (c + r() * 0.6 + 0.2)) / across - 0.15 / across
+      dab('e2', u, 0.16 + r() * 0.06, f, f + (f > 0 ? 0.25 + 0.5 * loose * u : -0.1))
+    }
+  }
+  // the light on the upper (sun) side; not on the narrow young plumes, which saves the player a stroke for each
+  if (q > 1) for (let j = 0; j < 3; j++) dab('e4', 0.14 + 0.22 * j + r() * 0.05, 0.1, -0.55 - r() * 0.3, -0.6)
+  return `<marker id="rp${q}">${d.svg(0)}</marker>`
+})
+const PLUME_DEFS = `<defs>${PLUMES.join('')}</defs>`
+/** One clump's plumes: for each kind in use, a path through the stalks' tops that is never stroked, with a plume (its
+ * marker) on each of its points; the clump's stroke width sets their size. */
+function plumes(tops: [number, number][][]) {
+  return tops
+    .map((list, q) => {
+      if (!list) return ''
+      let [px, py] = [0, 0]
+      const d = list.map(([x, y], j) => {
+        const st = (j > 0 && x >= px ? ' ' : '') + nums(x - px, y - py)
+        ;[px, py] = [x, y]
+        return st
+      })
+      return `<path class="k${q}" d="m${d.join('')}"/>`
+    })
+    .join('')
+}
 // Reeds near the viewer at both sides, rooted below the picture's edge and standing tall out of the water, bending
 // with the gusts. They stand where any window shows them: inside the sidebar's edge and the chat column's on the
 // left, the chat column's and the side panel's on the right; and tall enough to show above the bottom edge even when a
@@ -1788,13 +1862,18 @@ const REEDS = ([[60, 1290, 0.9], [150, 1275, 1], [215, 1300, 0.75], [1430, 1295,
   ([x, y, k]) => [outX(x), outY(y), k] as const,
 )
 function reeds(rand: () => number) {
-  // v37's finer brushwork, from its own stream: a few narrow leaves, some bent over; and the light down one side of
-  // each head, a thin copy of the heads (their colour comes from the group, so the copy takes the light's)
+  // v37's finer brushwork, from its own stream: a few narrow leaves, some bent over. The plumes' kinds, from another.
+  // (Nothing here draws from rand but what v42 drew, in the same order, so all that is drawn after keeps its place.)
   const fine = rng(6151)
-  return REEDS.map(([cx, cy, k], i) => {
+  const pf = rng(4409)
+  // the clump as a painter would set it down, from a stream of its own: stalks bowed this way and that, some crossing,
+  // a rhythm of tall and short, every fourth stalk thinner and lit (another colour), now and then a blade snapped and
+  // hanging
+  const bend = rng(5303)
+  return PLUME_DEFS + REEDS.map(([cx, cy, k], i) => {
     const leaves: string[] = []
     // each path's moves written relative to where the pen stopped, when that is shorter
-    const pen = { stalk: [0, 0], head: [0, 0], blade: [0, 0] }
+    const pen = { stalk: [0, 0], lit: [0, 0], blade: [0, 0] }
     const to = (k: keyof typeof pen, x: number, y: number, rest: string, [ex, ey]: readonly number[]) => {
       const [px, py] = pen[k]
       const abs = `M${pair(x, y)}`
@@ -1803,26 +1882,39 @@ function reeds(rand: () => number) {
       return (rel.length < abs.length && px !== 0 ? rel : abs) + rest
     }
     let stalk = ''
-    let head = ''
+    let lit = ''
+    const tops: [number, number][][] = []
     let blade = ''
     const n = R(14 * k) + 4
     // drawn ZK larger than v23 drew them, so they keep their size on screen
     const s = k * ZK
     for (let j = 0; j < n; j++) {
       const bx = cx + (rand() - 0.5) * 90 * s
-      const h = (300 + rand() * 170) * s
+      const bow = (bend() - 0.5) * 70 * s
+      const h = (300 + rand() * 170) * s * (bend() < 0.3 ? 0.7 + bend() * 0.15 : 1)
       const lean = ((rand() - 0.5) * 50 * k - 8) * ZK
       // (written from the clump's root in a translated group they would take fewer digits, but Chromium rasterises a
       // still, translated group a little differently, so they stay in the canvas's own units)
-      stalk += to('stalk', R(bx), cy, `q${nums(R(lean * 0.2), R(-h * 0.5), R(lean), R(-h))}`, [R(lean), R(-h)])
+      // (stalks, blades and leaves are flat-ended, which the player draws for less: their ends are below the picture's
+      // edge, under a plume, or narrow enough that the eye cannot tell)
+      const way = j % 4 === 2 ? 'lit' : 'stalk'
+      const st = to(way, R(bx), cy, `q${nums(R(lean * 0.2 + bow), R(-h * 0.5), R(lean), R(-h))}`, [R(lean), R(-h)])
+      if (way === 'lit') lit += st
+      else stalk += st
       if (rand() < 0.6) {
-        const [dx, dy] = [R(-lean * 0.06), R(30 * s)]
-        head += to('head', R(bx + lean * 0.96), R(cy - h + 10 * s), dx === 0 ? `v${dy}` : `l${nums(dx, dy)}`, [dx, dy])
+        // which plume: three of the six kinds for each clump (a young one, a full one, a loose one)
+        const q = (i + Math.floor(pf() * 3) * 2) % PLUMES.length
+        ;(tops[q] ??= []).push([R(bx + lean), R(cy - h)])
       }
       if (rand() < 0.7) {
         const side = rand() < 0.5 ? -1 : 1
         const end = [R(side * (50 + rand() * 30) * s), R(-h * (0.45 + rand() * 0.15))] as const
-        blade += to('blade', R(bx), cy, `q${nums(R(side * 25 * s), R(-h * 0.35), ...end)}`, end)
+        if (bend() < 0.12) {
+          // snapped two thirds of the way up, its end hanging down and out
+          const [kx, ky] = [R(end[0] * 0.75), R(end[1] * 0.68)]
+          const [fx, fy] = [R(side * (22 + bend() * 20) * s), R((30 + bend() * 25) * s)]
+          blade += to('blade', R(bx), cy, `q${nums(R(side * 25 * s), R(-h * 0.3), kx, ky)}l${nums(fx, fy)}`, [kx + fx, ky + fy])
+        } else blade += to('blade', R(bx), cy, `q${nums(R(side * 25 * s), R(-h * 0.35), ...end)}`, end)
       }
     }
     for (let j = 0; j < 3; j++) {
@@ -1831,7 +1923,7 @@ function reeds(rand: () => number) {
       const bent = fine() < 0.5
       leaves.push(`M${pair(bx, cy)}q${nums(R(side * (12 + fine() * 14) * s), R(-h * 0.7), R(side * (bent ? 70 : 34) * s), R(-h * (bent ? 0.62 : 1)))}`)
     }
-    return `<g class="x${i}"><path class="e3" stroke-width="${R(45 * s) / 10}" d="${blade}"/><path class="e1" stroke-width="${R(32 * s) / 10}" d="${stalk}"/><path class="e1" stroke-width="${R(22 * s) / 10}" d="${leaves.join('')}"/><g class="e2" stroke-width="${R(8 * s)}"><path id="r${i}" d="${head}"/></g><g class="e4" stroke-width="${R(26 * s) / 10}"><use href="#r${i}" x="${num(2.6 * s)}" y="${R(2 * s)}"/></g></g>`
+    return `<g class="x${i}" stroke-width="${num(s / PS)}"><path class="e3 bu" stroke-width="${R(45 * s) / 10}" d="${blade}"/><path class="e1 bu" stroke-width="${R(32 * s) / 10}" d="${stalk}"/><path class="ew bu" stroke-width="${R(22 * s) / 10}" d="${leaves.join('')}${lit}"/>${plumes(tops)}</g>`
   }).join('')
 }
 
@@ -2173,7 +2265,7 @@ ${variant === 'test' ? '' : `.gy{animation:gy var(--b) ease-in-out var(--o,0s) i
 .bj{--b:${short(FLOCK_BEAT)}s;animation:jostle var(--t) ease-in-out var(--j) infinite alternate}@keyframes jostle{from{translate:-3px 1.6px}to{translate:3px -2.4px}}
 @keyframes gn{0%,30%,62%,100%{rotate:0deg}42%,50%{rotate:-5deg}}.kf{fill:#5d6b7a;transform:matrix(-.6,.16,0,.75,5,-2)}
 .oy{--b:${short(BEAT_S)}s;animation:oy var(--t) ease-in-out var(--j) infinite alternate,gn 23s ease-in-out var(--d) infinite}@keyframes oy{from{translate:0 -11px}to{translate:0 11px}}
-${REEDS.map((_, i) => `.x${i}`).join(',')}{animation:reed ${GUST}s ease-in-out var(--j) infinite}${REEDS.map(([x, y], i) => `.x${i}{transform-origin:${x}px ${y}px;--j:${short(gustDelay(x))}s}`).join('')}
+marker{overflow:visible}.e2{stroke-width:${num(2.2 * PS)}}.e4{stroke-width:${num(1.6 * PS)}}${PLUMES.map((_, q) => `.k${q}{marker:url(#rp${q})}`).join('')}${REEDS.map((_, i) => `.x${i}`).join(',')}{animation:reed ${GUST}s ease-in-out var(--j) infinite}${REEDS.map(([x, y], i) => `.x${i}{transform-origin:${x}px ${y}px;--j:${short(gustDelay(x))}s}`).join('')}
 ${gustFrames('reed', s => `transform:skewX(${num(0.5 + 1.9 * s)}deg)`)}
 
 .sk{animation:flake 400s linear infinite}@keyframes flake{to{transform:translateY(${Y1 - Y0}px)}}
